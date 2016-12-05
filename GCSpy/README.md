@@ -5,6 +5,10 @@ management process including garbage collector and memory allocator. The server
 module is embedded in targeting runtime to collect and transfer heap data to
 client, while the client visualize these data.
 
+## ART VM Port
+
+GCSpy was enabled to work on Android (ART VM), ART realted code can be found at https://github.com/android-art-intel/Nougat art-extension code base. The tool was tested to work at least on x86 Android emulator build (see https://github.com/android-art-intel/Nougat). 
+
 ## Client
 
 Source code of GCspy client exists in `$TOP/client`.
