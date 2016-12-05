@@ -1,0 +1,32 @@
+apply plugin: "java"
+apply plugin: "idea"
+apply plugin: "application"
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+
+version = '1.013'
+mainClassName = "gcspy.Main"
+ext {
+  appName = "GCSpy"
+}
+
+repositories {
+  maven { url "https://repository.jboss.org/nexus/content/repositories/root_repository/maven2" }
+}
+
+dependencies {
+  compile "javax.media:jai-core:1.1.3"
+}
+
+sourceSets.main.java.srcDirs = [ "src" ]
+sourceSets.main.resources.srcDirs = ["resources"]
+
+task dist(type: Jar) {
+	manifest {
+        attributes 'Main-Class': project.mainClassName
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
